@@ -1,5 +1,6 @@
 package com.garguir.repository;
 
+import com.garguir.models.Document;
 import com.garguir.util.Config;
 
 import java.io.BufferedWriter;
@@ -24,14 +25,15 @@ public class TxtFileWriter {
         return instance;
     }
 
-    public void saveDocumentsNotErased(List<String> documents) {
+    public void saveDocumentsNotErased(List<Document> documents) {
         if(!documents.isEmpty()) {
             StringBuilder stringBuilder = new StringBuilder();
             try {
                 BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(PATH+getFileName()));
-                for (String document : documents) {
-                    stringBuilder.append(document);
+                for (Document document : documents) {
+                    stringBuilder.append(document.getType());
                     stringBuilder.append(SEMICOLON);
+                    stringBuilder.append(document.getNumber());
                     stringBuilder.append(LINE_BREAK);
                 }
 

@@ -1,5 +1,6 @@
 package com.garguir.repository;
 
+import com.garguir.models.Document;
 import com.garguir.util.Config;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
@@ -26,8 +27,8 @@ public class ExcelFileReader {
         return instance;
     }
 
-    public List<String> readFile() {
-        List<String> documents = new ArrayList<>();
+    public List<Document> readFile() {
+        List<Document> documents = new ArrayList<>();
 
         try {
             FileInputStream inputStream = new FileInputStream(PATH);
@@ -39,7 +40,7 @@ public class ExcelFileReader {
             while(rowIterator.hasNext()){
 
                 Row nextRow = rowIterator.next();
-                documents.add(formatter.formatCellValue(nextRow.getCell(0)));
+                documents.add(new Document(formatter.formatCellValue(nextRow.getCell(0)), formatter.formatCellValue(nextRow.getCell(1))));
                 log().info(formatter.formatCellValue(nextRow.getCell(0)));
                 Thread.sleep(350);
             }

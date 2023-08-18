@@ -10,6 +10,7 @@ import java.util.Date;
 public class UtilExcelToList {
     private static final Logger log = LogManager.getLogger("ExcelToList");
     public static final String USER_DIR = System.getProperty("user.dir");
+    public static final String URL_BAR = "/";
     public static final String PATH_RESOURCES = USER_DIR + "\\src\\main\\resources";
 
     private UtilExcelToList(){
@@ -24,4 +25,17 @@ public class UtilExcelToList {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(date);
     }
+
+    public static String addZeroForward(String s){
+        return (s.length() > 1) ? s : "0" + s;
+    }
+
+    public static String deleteLeftZeros(String s){
+        return s.replaceFirst( "^0+(?!$)", "");
+    }
+
+    public static Long getUsageMemory(){
+        return Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+    }
+
 }

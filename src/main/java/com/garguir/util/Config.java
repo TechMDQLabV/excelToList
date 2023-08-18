@@ -7,7 +7,8 @@ import static com.garguir.util.UtilExcelToList.PATH_RESOURCES;
 import static com.garguir.util.UtilExcelToList.log;
 
 public class Config {
-    private static final String URL_FILE_ORIGIN = "urlFileOrigin";
+    private static final String URL_XLSX_FILE_ORIGIN = "urlXlsxFileOrigin";
+    private static final String URL_CSV_FILE_ORIGIN = "urlCsvFileOrigin";
     private static final String URL_FILE_DESTINY = "urlFileDestiny";
     private static final Properties PROPERTIES = new Properties();
     private static final String PATH_PROPERTIES = PATH_RESOURCES + "\\config.properties";
@@ -29,8 +30,11 @@ public class Config {
         return config;
     }
 
-    public String getUrlFileOrigin(){
-        return PROPERTIES.getProperty(URL_FILE_ORIGIN);
+    public String getUrlXlsxFileOrigin(){
+        return PROPERTIES.getProperty(URL_XLSX_FILE_ORIGIN);
+    }
+    public String getUrlCsvFileOrigin(){
+        return PROPERTIES.getProperty(URL_CSV_FILE_ORIGIN);
     }
 
     public String getUrlFileDestiny(){

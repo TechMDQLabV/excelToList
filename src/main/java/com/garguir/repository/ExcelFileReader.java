@@ -17,7 +17,7 @@ import java.util.List;
 import static com.garguir.util.UtilExcelToList.log;
 
 public class ExcelFileReader {
-    private static final String PATH = Config.getConfig().getUrlFileOrigin();
+    private static final String PATH = Config.getConfig().getUrlXlsxFileOrigin();
     private static ExcelFileReader instance = null;
 
     public static ExcelFileReader getInstance() {
@@ -41,7 +41,7 @@ public class ExcelFileReader {
 
                 Row nextRow = rowIterator.next();
                 documents.add(new Document(formatter.formatCellValue(nextRow.getCell(0)), formatter.formatCellValue(nextRow.getCell(1))));
-                log().info(formatter.formatCellValue(nextRow.getCell(0)));
+                log().info(formatter.formatCellValue(nextRow.getCell(0)) + " - " + formatter.formatCellValue(nextRow.getCell(1)));
                 Thread.sleep(350);
             }
         } catch (IOException e) {

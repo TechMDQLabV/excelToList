@@ -19,6 +19,5 @@ public class Main {
         //List<Document> documentsNotErased = new ArrayList<>();
         //TxtFileWriter.getInstance().saveDocumentsNotErased(documentsToErase);
         CsvSplitter.getInstance().readFile();
-        System.out.println();
     }
 }

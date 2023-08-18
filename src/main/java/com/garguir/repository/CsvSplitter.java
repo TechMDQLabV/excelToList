@@ -49,6 +49,8 @@ public class CsvSplitter {
                 line = bufferedReader.readLine();
                 contLines++;
             }
+            writeFile(documents, contFiles);
+            documents.clear();
         } catch (IOException e) {
             log().warn(e.getMessage());
         }

@@ -13,7 +13,6 @@ import static com.garguir.util.UtilExcelToList.*;
 
 public class CsvFileReader {
     private static final String PATH = Config.getConfig().getUrlCsvFileOrigin();
-    private static final String SEMICOLON = ";";
     private static CsvFileReader instance = null;
 
     public static CsvFileReader getInstance(){

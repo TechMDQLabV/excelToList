@@ -38,7 +38,6 @@ public class ExcelFileReader {
 
             DataFormatter formatter = new DataFormatter();
             while(rowIterator.hasNext()){
-
                 Row nextRow = rowIterator.next();
                 documents.add(new Document(formatter.formatCellValue(nextRow.getCell(0)), formatter.formatCellValue(nextRow.getCell(1))));
                 log().info(formatter.formatCellValue(nextRow.getCell(0)) + " - " + formatter.formatCellValue(nextRow.getCell(1)));

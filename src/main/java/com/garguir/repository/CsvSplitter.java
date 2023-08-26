@@ -7,18 +7,21 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.garguir.util.UtilExcelToList.*;
+import static com.garguir.util.UtilExcelToList.CSV;
+import static com.garguir.util.UtilExcelToList.ENVIRONMENT;
+import static com.garguir.util.UtilExcelToList.FILE_NAME;
+import static com.garguir.util.UtilExcelToList.HYPHEN;
+import static com.garguir.util.UtilExcelToList.PATH_RESOURCES;
+import static com.garguir.util.UtilExcelToList.SEMICOLON;
+import static com.garguir.util.UtilExcelToList.URL_BAR;
+import static com.garguir.util.UtilExcelToList.WITHOUT_EXTENSION;
+import static com.garguir.util.UtilExcelToList.addZeroForward;
+import static com.garguir.util.UtilExcelToList.deleteLeftZeros;
+import static com.garguir.util.UtilExcelToList.documentsToStringBuilder;
 import static com.garguir.util.UtilExcelToList.log;
 
 public class CsvSplitter {
     private static final String PATH = Config.getConfig().getUrlCsvFileOrigin();
-    private static final String WITHOUT_EXTENSION = ".without_extension";
-    private static final String FILE_NAME = "users";
-    private static final String ENVIRONMENT = "dev";
-    private static final String SEMICOLON = ";";
-    private static final String LINE_BREAK = "\n";
-    private static final String CSV = ".csv";
-    private static final String HYPHEN = "-";
     private static final int LIMIT = 10;
     private static CsvSplitter instance = null;
 
@@ -28,8 +31,7 @@ public class CsvSplitter {
         }
         return instance;
     }
-
-    public List<Document> readFile() {
+    public void readFile() {
         int contLines = 0;
         int contFiles = 1;
         List<Document> documents = new ArrayList<>();
@@ -54,21 +56,14 @@ public class CsvSplitter {
         } catch (IOException e) {
             log().warn(e.getMessage());
         }
-
-        return documents;
     }
 
     private void writeFile(List<Document> documents, int cont){
-        StringBuilder stringBuilder = new StringBuilder();
         try{
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(PATH_RESOURCES + URL_BAR + FILE_NAME + HYPHEN + ENVIRONMENT + HYPHEN + cont + CSV));
 
-            for(Document document : documents) {
-                stringBuilder.append(document.getType());
-                stringBuilder.append(SEMICOLON);
-                stringBuilder.append(document.getNumber());
-                stringBuilder.append(LINE_BREAK);
-            }
+            StringBuilder stringBuilder = documentsToStringBuilder(documents);
+
             bufferedWriter.write(stringBuilder.toString());
             bufferedWriter.close();
             log().info("Archivo .csv guardado");
